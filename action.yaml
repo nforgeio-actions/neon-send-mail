@@ -179,6 +179,17 @@ runs:
               $attachments.Add($attachment)
           }
       }
+      
+      AddAttachment $attachment0
+      AddAttachment $attachment1
+      AddAttachment $attachment2
+      AddAttachment $attachment3
+      AddAttachment $attachment4
+      AddAttachment $attachment5
+      AddAttachment $attachment6
+      AddAttachment $attachment7
+      AddAttachment $attachment8
+      AddAttachment $attachment9
 
       # Send the message
         
