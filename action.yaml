@@ -172,7 +172,9 @@ runs:
           
           if (![System.String]::IsNullOrEmpty($attachmentPath))
           {
-              $stream     = New-Object -TypeName System.IO.FileStream -ArgumentList $attachmentPath, [System.IO.FileMode]::Open, [System.IO.FileAccess]::Read
+              $fileMode   = [System.IO.FileMode]::Open
+              $fileAccess = [System.IO.FileAccess]::Read
+              $stream     = New-Object -TypeName System.IO.FileStream -ArgumentList $attachmentPath, $fileMode, $fileAccess
               $attachment = New-Object -TypeName System.Net.Mail.Attachment -ArgumentList $stream, $null
               
               $message.Attachments.Add($attachment)
