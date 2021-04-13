@@ -172,6 +172,11 @@ runs:
           
           if (![System.String]::IsNullOrEmpty($attachmentPath))
           {
+              if (![System.IO.File]::Exists($attachmentPath))
+              {
+                  throw "Attachment file [$attachmentPath] does not exist."
+              }
+          
               $fileMode         = [System.IO.FileMode]::Open
               $fileAccess       = [System.IO.FileAccess]::Read
               $stream           = New-Object -TypeName System.IO.FileStream -ArgumentList $attachmentPath, $fileMode, $fileAccess
