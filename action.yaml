@@ -16,7 +16,7 @@ inputs:
     description: Optional CC email addresses separated by commas.
     required: false
   bcc:
-    description: Optional BCC address separated by commas.
+    description: Optional BCC addresses separated by commas.
     required: false
   body:
     description: Optional email body text.
