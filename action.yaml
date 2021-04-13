@@ -30,20 +30,25 @@ inputs:
     steps:
     - shell: pwsh
       run: |
-        # Pick up the deployment related functions
+    # Pick up the deployment related functions
         
-        . $env:NC_ROOT/Powershell/deployment.ps1
-        
+    . $env:NC_ROOT/Powershell/deployment.ps1
+
+    function Send
+    {        
         # Fetch the credentials
+
+        if ($env:1Password -eq $null)
+        {
+        }
         
-        $username           = GetSecretPassword "NEONFORGE_LOGIN[username]"
-        $password           = GetSecretPassword "NEONFORGE_LOGIN[password]"
-        $credentials        = New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList $username, $password
+        $username    = GetSecretPassword "NEONFORGE_LOGIN[username]" 
+        $password    = GetSecretPassword "NEONFORGE_LOGIN[password]"
+        $credentials = New-Object -TypeName System.Net.NetworkCredential -ArgumentList $username, $password
         
         # Construct the email message
-        
-        $message            = New-Object System.Net.Mail.MailMessage
-        $message.From       = New-Object -TypeName System.Net.Mail.MailAddress -ArgumentList $username
+
+        $toList = New-Object -TypeName MailAddressCollection 
         
         ForEach ($address in $env:to.Split([System.StringSplitOptions]::RemoveEmptyEntries))
         {
@@ -51,19 +56,28 @@ inputs:
             if ($address -ne "")
             {
                 $address = New-Object -TypeName System.Net.Mail.MailAddress -ArgumentList $address
-                message.To.Add($address)
+                $toList.Add($address)
             }
         }
         
+        $message            = New-Object System.Net.Mail.MailMessage
+        $message.From       = New-Object -TypeName System.Net.Mail.MailAddress -ArgumentList $username
+        $message.To         = $toList 
         $message.Subject    = $env:subject
         $message.Body       = $env:body
         $message.IsBodyHtml = $env:bodyAsHtml
         
         # Send the message
         
-        $smtp               = New-Object Net.Mail.SmtpClient("smtp.office365.com", 587)
-        $smtp.Credentials   = $credentials
+        $smtp             = New-Object Net.Mail.SmtpClient("smtp.office365.com", 587)
+        $smtp.Credentials = $credentials
+        $smtp.EnableSsl   = $true
+
         $smtp.Send($message)
-        
-        
-        
+    }
+
+    $env:to      = "jeff@neonforge.com"
+    $env:subject = "HELLO WORLD!"
+    $env:body    = "Is this thing working?"
+
+    Send
