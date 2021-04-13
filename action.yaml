@@ -47,11 +47,11 @@ runs:
 
       if ($env:DEVBOT_MASTER_PASSWORD -eq $null)
       {
-          # $todo(jefflill): Error out here
+          throw "DEVBOT_MASTER_PASSWORD environment variable is required.  Is this configured as a GitHub secret?"
       }
 
-      $username    = GetSecretValue "NEONFORGE_LOGIN[username]" 
-      $password    = GetSecretValue "NEONFORGE_LOGIN[password]"
+      $username    = GetSecretValue "NEONFORGE_LOGIN[username]" -MasterPassword $env:DEVBOT_MASTER_PASSWORD
+      $password    = GetSecretPassword "SMTP_PASSWORD" -MasterPassword $env:DEVBOT_MASTER_PASSWORD
       $credentials = New-Object -TypeName System.Net.NetworkCredential -ArgumentList $username, $password
      
       # Construct the email message
