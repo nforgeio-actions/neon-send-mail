@@ -32,7 +32,7 @@ inputs:
       run: |
         # Pick up the deployment related functions
         
-        . ./$env:NC_ROOT/Powershell/deployment.ps1
+        . $env:NC_ROOT/Powershell/deployment.ps1
         
         # Fetch the credentials
         
