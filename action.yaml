@@ -39,11 +39,11 @@ runs:
       
       Get-ChildItem env:
       
-      $masterPassword = ${{ secrets.DEVBOT_MASTER_PASSWORD }}
+      # $masterPassword = ${{ secrets.DEVBOT_MASTER_PASSWORD }}
 
       if ($masterPassword -eq $null)
       {
-          throw "secrets.DEVBOT_MASTER_PASSWORD is required."
+          throw "[secrets.DEVBOT_MASTER_PASSWORD] is required."
       }
 
       $username    = GetSecretValue "NEONFORGE_LOGIN[username]" -MasterPassword $masterPassword
