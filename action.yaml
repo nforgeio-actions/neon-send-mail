@@ -1,14 +1,33 @@
-name: test
-on:
-  workflow_dispatch:
-jobs:
-  job1:
-    runs-on: self-hosted
+#------------------------------------------------------------------------------
+# Sends an email from the neonFORGE Office 365 account associated with the
+# currently signed-in 1Passwork user.
+
+name: neon-send-mail
+description: Sends an email via Office 365
+inputs:
+  to: 
+    description: Target email addresses separated by commas.
+    required: true
+  subject: 
+    description: The subject line
+    required: true
+  cc:
+    description: Optional CC email addresses separated by commas.
+    required: false
+  bcc:
+    description: Optional BCC address separated by commas.
+    required: false
+  body:
+    description: Optional email body text.
+    required: false
+    default: ""
+  bodyAsHtml: 
+    description: Optionally indicates that the body text is HTML.
+    required: false
+    default: false
+  runs:
+    using: composite
     steps:
-    - name: Load environment
-      uses: nforgeio-actions/neon-environment@master
-    - name: Checkout repos
-      uses: nforgeio-actions/neon-checkout@master
-    - name: Install Microsoft 365 Powershell Cmdlets
-      uses: nforgeio-actions/neon-install-msft365@master
-      
+    - shell: pwsh
+      run: |
+        
