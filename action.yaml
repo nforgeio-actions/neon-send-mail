@@ -1,0 +1,14 @@
+name: test
+on:
+  workflow_dispatch:
+jobs:
+  job1:
+    runs-on: self-hosted
+    steps:
+    - name: Load environment
+      uses: nforgeio-actions/neon-environment@master
+    - name: Checkout repos
+      uses: nforgeio-actions/neon-checkout@master
+    - name: Install Microsoft 365 Powershell Cmdlets
+      uses: nforgeio-actions/neon-install-msft365@master
+      
