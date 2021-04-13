@@ -1,5 +1,7 @@
 #------------------------------------------------------------------------------
-# Sends an email from devbot@neonforge.com.
+# Sends an email from the current user's O365 account.  This requires that the
+# account's master 1Password be present as the MASTER_PASSWORD environment
+# variable.
 
 name: neon-send-mail
 description: Sends an email via Office 365.
@@ -38,11 +40,11 @@ runs:
       
       Get-ChildItem env:
       
-      # $masterPassword = ${{ secrets.DEVBOT_MASTER_PASSWORD }}
+      $masterPassword = $env:MASTER_PASSWORD
 
       if ($masterPassword -eq $null)
       {
-          throw "[secrets.DEVBOT_MASTER_PASSWORD] is required."
+          throw "MASTER_PASSWORD is required."
       }
 
       $username    = GetSecretValue "NEONFORGE_LOGIN[username]" -MasterPassword $masterPassword
