@@ -31,7 +31,7 @@ runs:
   steps:
   - shell: pwsh
     run: |
-      
+
       # Pick up the deployment related functions
         
       . $env:NC_ROOT/Powershell/deployment.ps1
@@ -59,6 +59,11 @@ runs:
       # Construct the email message
 
       $message = New-Object System.Net.Mail.MailMessage
+      
+      if ([System.String]::IsNullOrEmpty($to))
+      {
+          throw "The [to] argument cannot be null or empty."
+      }
         
       ForEach ($address in $to.Split(",", [System.StringSplitOptions]::RemoveEmptyEntries))
       {
@@ -69,7 +74,33 @@ runs:
               $message.To.Add($address)
           }
       }
-        
+      
+      if (![System.String]::IsNullOrEmpty($cc)))
+      {
+          ForEach ($address in $cc.Split(",", [System.StringSplitOptions]::RemoveEmptyEntries))
+          {
+              $address = $address.Trim()
+              if ($address -ne "")
+              {
+                  $address = New-Object -TypeName System.Net.Mail.MailAddress -ArgumentList $address
+                  $message.CC.Add($address)
+              }
+          }
+      }
+      
+      if (![System.String]::IsNullOrEmpty($bcc)))
+      {
+          ForEach ($address in $bcc.Split(",", [System.StringSplitOptions]::RemoveEmptyEntries))
+          {
+              $address = $address.Trim()
+              if ($address -ne "")
+              {
+                  $address = New-Object -TypeName System.Net.Mail.MailAddress -ArgumentList $address
+                  $message.Bcc.Add($address)
+              }
+          }
+      }
+      
       $message.From       = New-Object -TypeName System.Net.Mail.MailAddress -ArgumentList $username
       $message.Subject    = $subject
       $message.Body       = $body
