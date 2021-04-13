@@ -51,10 +51,10 @@ runs:
       
       # Fetch the parameters
       
-      $to         = ${{ inputs.to }}
-      $subject    = ${{ inputs.subject }}
-      $body       = ${{ inputs.body }}
-      $bodyAsHtml = ${{ inputs.bodyAsHtml }}
+      $to         = "${{ inputs.to }}"
+      $subject    = "${{ inputs.subject }}"
+      $body       = "${{ inputs.body }}"
+      $bodyAsHtml = "${{ inputs.bodyAsHtml }}"
      
       # Construct the email message
 
