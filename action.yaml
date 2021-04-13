@@ -31,18 +31,35 @@ inputs:
     - shell: pwsh
       run: |
         # Pick up the deployment related functions
+        
         . ./$env:NC_ROOT/Powershell/deployment.ps1
+        
+        # Fetch the credentials
         
         $username           = GetSecretPassword "NEONFORGE_LOGIN[username]"
         $password           = GetSecretPassword "NEONFORGE_LOGIN[password]"
         $credentials        = New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList $username, $password
         
+        # Construct the email message
+        
         $message            = New-Object System.Net.Mail.MailMessage
-        $message.From       = $username
-        $message.To         = $env:to.Split([System.StringSplitOptions]::RemoveEmptyEntries])
+        $message.From       = New-Object -TypeName System.Net.Mail.MailAddress -ArgumentList $username
+        
+        ForEach ($address in $env:to.Split([System.StringSplitOptions]::RemoveEmptyEntries])
+        {
+            $address = $address.Trim()
+            if ($address -neq "")
+            {
+                $address = New-Object -TypeName System.Net.Mail.MailAddress -ArgumentList $address
+                message.To.Add($address)
+            }
+        }
+        
         $message.Subject    = $env:subject
         $message.Body       = $env:body
         $message.IsBodyHtml = $env:bodyAsHtml
+        
+        # Send the message
         
         $smtp               = New-Object Net.Mail.SmtpClient(smtp.office365.com, 587)
         $smtp.Credentials   = $credentials
