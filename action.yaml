@@ -30,14 +30,6 @@ runs:
   steps:
   - shell: pwsh
     run: |
-        
-      # $debug(jefflill): TEST CODE
-      #
-      # $env:to      = "jeff@neonforge.com"
-      # $env:subject = "HELLO WORLD!"
-      # $env:body    = "Is this thing working?"
-        
-      return  # Email is not currently working
       
       # Pick up the deployment related functions
         
