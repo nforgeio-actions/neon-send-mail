@@ -48,7 +48,7 @@ inputs:
         ForEach ($address in $env:to.Split([System.StringSplitOptions]::RemoveEmptyEntries])
         {
             $address = $address.Trim()
-            if ($address -neq "")
+            if ($address -ne "")
             {
                 $address = New-Object -TypeName System.Net.Mail.MailAddress -ArgumentList $address
                 message.To.Add($address)
