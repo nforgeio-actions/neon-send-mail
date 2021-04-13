@@ -25,6 +25,10 @@ inputs:
     description: Optionally indicates that the body text is HTML.
     required: false
     default: false
+  masterPassword:
+    description: The master 1Password for the current user (defaults to $secrets.DEVBOT_MASTER_PASSWORD)
+    required: false
+    default: {{ $secrets.DEVBOT_MASTER_PASSWORD }}
 runs:
   using: composite
   steps:
@@ -37,11 +41,11 @@ runs:
       
       # Fetch the credentials
       
-      $masterPassword = $env:secrets.DEVBOT_MASTER_PASSWORD
+      $masterPassword = $env:masterPassword
 
       if ($masterPassword -eq $null)
       {
-          throw "secrets.DEVBOT_MASTER_PASSWORD environment variable is required.  Is this configured as a GitHub secret?"
+          throw "secrets.DEVBOT_MASTER_PASSWORD is required."
       }
 
       $username    = GetSecretValue "NEONFORGE_LOGIN[username]" -MasterPassword $masterPassword
