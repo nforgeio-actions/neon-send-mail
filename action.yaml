@@ -39,7 +39,7 @@ inputs:
         
         $message            = New-Object System.Net.Mail.MailMessage
         $message.From       = $username
-        $message.To         = $env:to
+        $message.To         = $env:to.Split([System.StringSplitOptions]::RemoveEmptyEntries])
         $message.Subject    = $env:subject
         $message.Body       = $env:body
         $message.IsBodyHtml = $env:bodyAsHtml
