@@ -39,7 +39,7 @@ runs:
       
       Get-ChildItem env:
       
-      $masterPassword = $env:secrets.DEVBOT_MASTER_PASSWORD
+      $masterPassword = ${{ secrets.DEVBOT_MASTER_PASSWORD }}
 
       if ($masterPassword -eq $null)
       {
