@@ -25,10 +25,6 @@ inputs:
     description: Optionally indicates that the body text is HTML.
     required: false
     default: false
-  masterPassword:
-    description: The master 1Password for the current user (defaults to $secrets.DEVBOT_MASTER_PASSWORD)
-    required: false
-    default: {{ $secrets.DEVBOT_MASTER_PASSWORD }}
 runs:
   using: composite
   steps:
@@ -41,7 +37,9 @@ runs:
       
       # Fetch the credentials
       
-      $masterPassword = $env:masterPassword
+      Get-ChildItem env:
+      
+      $masterPassword = $env:secrets.DEVBOT_MASTER_PASSWORD
 
       if ($masterPassword -eq $null)
       {
