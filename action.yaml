@@ -25,59 +25,58 @@ inputs:
     description: Optionally indicates that the body text is HTML.
     required: false
     default: false
-  runs:
-    using: composite
-    steps:
-    - shell: pwsh
-      run: |
+runs:
+  using: composite
+  steps:
+  - shell: pwsh
+    run: |
         
-        # $debug(jefflill): TEST CODE
-        #
-        # $env:to      = "jeff@neonforge.com"
-        # $env:subject = "HELLO WORLD!"
-        # $env:body    = "Is this thing working?"
+      # $debug(jefflill): TEST CODE
+      #
+      # $env:to      = "jeff@neonforge.com"
+      # $env:subject = "HELLO WORLD!"
+      # $env:body    = "Is this thing working?"
         
-        return  # Email is not currently working
+      return  # Email is not currently working
       
-        # Pick up the deployment related functions
+      # Pick up the deployment related functions
         
-        . $env:NC_ROOT/Powershell/deployment.ps1
+      . $env:NC_ROOT/Powershell/deployment.ps1
       
-        # Fetch the credentials
+      # Fetch the credentials
 
-        if ($env:DEVBOT_MASTER_PASSWORD -eq $null)
-        {
-            # $todo(jefflill): Error out here
-        }
+      if ($env:DEVBOT_MASTER_PASSWORD -eq $null)
+      {
+          # $todo(jefflill): Error out here
+      }
 
-        $username    = GetSecretValue "NEONFORGE_LOGIN[username]" 
-        $password    = GetSecretValue "NEONFORGE_LOGIN[password]"
-        $credentials = New-Object -TypeName System.Net.NetworkCredential -ArgumentList $username, $password
+      $username    = GetSecretValue "NEONFORGE_LOGIN[username]" 
+      $password    = GetSecretValue "NEONFORGE_LOGIN[password]"
+      $credentials = New-Object -TypeName System.Net.NetworkCredential -ArgumentList $username, $password
      
-        # Construct the email message
+      # Construct the email message
 
-        $message = New-Object System.Net.Mail.MailMessage
+      $message = New-Object System.Net.Mail.MailMessage
         
-        ForEach ($address in $env:to.Split(",", [System.StringSplitOptions]::RemoveEmptyEntries))
-        {
-            $address = $address.Trim()
-            if ($address -ne "")
-            {
-                $address = New-Object -TypeName System.Net.Mail.MailAddress -ArgumentList $address
-                $message.To.Add($address)
-            }
-        }
+      ForEach ($address in $env:to.Split(",", [System.StringSplitOptions]::RemoveEmptyEntries))
+      {
+          $address = $address.Trim()
+          if ($address -ne "")
+          {
+              $address = New-Object -TypeName System.Net.Mail.MailAddress -ArgumentList $address
+              $message.To.Add($address)
+          }
+      }
         
-        $message.From       = New-Object -TypeName System.Net.Mail.MailAddress -ArgumentList $username
-        $message.Subject    = $env:subject
-        $message.Body       = $env:body
-        $message.IsBodyHtml = $env:bodyAsHtml
+      $message.From       = New-Object -TypeName System.Net.Mail.MailAddress -ArgumentList $username
+      $message.Subject    = $env:subject
+      $message.Body       = $env:body
+      $message.IsBodyHtml = $env:bodyAsHtml
 
-        # Send the message
+      # Send the message
         
-        $smtp             = New-Object Net.Mail.SmtpClient("smtp.office365.com", 587)
-        $smtp.Credentials = $credentials
-        $smtp.EnableSsl   = $true
-        $smtp.Send($message)
-
-  
+      $smtp             = New-Object Net.Mail.SmtpClient("smtp.office365.com", 587)
+      $smtp.Credentials = $credentials
+      $smtp.EnableSsl   = $true
+      $smtp.Send($message)
+ 
