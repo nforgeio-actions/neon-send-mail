@@ -61,7 +61,7 @@ inputs:
         
         # Send the message
         
-        $smtp               = New-Object Net.Mail.SmtpClient(smtp.office365.com, 587)
+        $smtp               = New-Object Net.Mail.SmtpClient("smtp.office365.com", 587)
         $smtp.Credentials   = $credentials
         $smtp.Send($message)
         
