@@ -60,7 +60,7 @@ runs:
 
       $message = New-Object System.Net.Mail.MailMessage
         
-      ForEach ($address in $env:to.Split(",", [System.StringSplitOptions]::RemoveEmptyEntries))
+      ForEach ($address in $to.Split(",", [System.StringSplitOptions]::RemoveEmptyEntries))
       {
           $address = $address.Trim()
           if ($address -ne "")
