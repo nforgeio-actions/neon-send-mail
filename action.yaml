@@ -33,9 +33,9 @@ inputs:
         # Pick up the deployment related functions
         . ./$env:NC_ROOT/Powershell/deployment.ps1
         
-        $username    = GetSecretPassword "NEONFORGE_LOGIN[username]"
-        $password    = GetSecretPassword "NEONFORGE_LOGIN[password]"
-        $credentials = New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList $username, $password
+        $username           = GetSecretPassword "NEONFORGE_LOGIN[username]"
+        $password           = GetSecretPassword "NEONFORGE_LOGIN[password]"
+        $credentials        = New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList $username, $password
         
         $message            = New-Object System.Net.Mail.MailMessage
         $message.From       = $username
@@ -44,8 +44,8 @@ inputs:
         $message.Body       = $env:body
         $message.IsBodyHtml = $env:bodyAsHtml
         
-        $smtp             = New-Object Net.Mail.SmtpClient(smtp.office365.com, 587)
-        $smtp.Credentials = $credentials
+        $smtp               = New-Object Net.Mail.SmtpClient(smtp.office365.com, 587)
+        $smtp.Credentials   = $credentials
         $smtp.Send($message)
         
         
