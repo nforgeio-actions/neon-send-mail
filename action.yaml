@@ -36,14 +36,16 @@ runs:
       . $env:NC_ROOT/Powershell/deployment.ps1
       
       # Fetch the credentials
+      
+      $masterPassword = $env:secrets.DEVBOT_MASTER_PASSWORD
 
-      if ($env:DEVBOT_MASTER_PASSWORD -eq $null)
+      if ($masterPassword -eq $null)
       {
-          throw "DEVBOT_MASTER_PASSWORD environment variable is required.  Is this configured as a GitHub secret?"
+          throw "secrets.DEVBOT_MASTER_PASSWORD environment variable is required.  Is this configured as a GitHub secret?"
       }
 
-      $username    = GetSecretValue "NEONFORGE_LOGIN[username]" -MasterPassword $env:DEVBOT_MASTER_PASSWORD
-      $password    = GetSecretPassword "SMTP_PASSWORD" -MasterPassword $env:DEVBOT_MASTER_PASSWORD
+      $username    = GetSecretValue "NEONFORGE_LOGIN[username]" -MasterPassword $masterPassword
+      $password    = GetSecretPassword "SMTP_PASSWORD" -MasterPassword $masterPassword
       $credentials = New-Object -TypeName System.Net.NetworkCredential -ArgumentList $username, $password
      
       # Construct the email message
