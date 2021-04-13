@@ -176,7 +176,7 @@ runs:
               $fileAccess       = [System.IO.FileAccess]::Read
               $stream           = New-Object -TypeName System.IO.FileStream -ArgumentList $attachmentPath, $fileMode, $fileAccess
               $contentType      = New-Object -TypeName System.Net.Mime.ContentType
-              $contentType.Name = [System.IO.Path].GetFileName($attachmentPath)
+              $contentType.Name = [System.IO.Path]::GetFileName($attachmentPath)
               $attachment       = New-Object -TypeName System.Net.Mail.Attachment -ArgumentList $stream, $contentType
               
               $message.Attachments.Add($attachment)
