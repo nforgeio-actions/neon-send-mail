@@ -75,7 +75,7 @@ runs:
           }
       }
       
-      if (![System.String]::IsNullOrEmpty($cc)))
+      if (![System.String]::IsNullOrEmpty($cc))
       {
           ForEach ($address in $cc.Split(",", [System.StringSplitOptions]::RemoveEmptyEntries))
           {
@@ -88,7 +88,7 @@ runs:
           }
       }
       
-      if (![System.String]::IsNullOrEmpty($bcc)))
+      if (![System.String]::IsNullOrEmpty($bcc))
       {
           ForEach ($address in $bcc.Split(",", [System.StringSplitOptions]::RemoveEmptyEntries))
           {
