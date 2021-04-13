@@ -1,6 +1,5 @@
 #------------------------------------------------------------------------------
-# Sends an email from the neonFORGE Office 365 account associated with the
-# currently signed-in 1Password user.
+# Sends an email from devbot@neonforge.com.
 
 name: neon-send-mail
 description: Sends an email via Office 365.
