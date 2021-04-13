@@ -3,7 +3,7 @@
 # currently signed-in 1Password user.
 
 name: neon-send-mail
-description: Sends an email via Office 365
+description: Sends an email via Office 365.
 inputs:
   to: 
     description: Target email addresses separated by commas.
