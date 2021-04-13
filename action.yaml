@@ -30,22 +30,30 @@ inputs:
     steps:
     - shell: pwsh
       run: |
-    # Pick up the deployment related functions
         
-    . $env:NC_ROOT/Powershell/deployment.ps1
-
-    function Send
-    {        
+        # $debug(jefflill): TEST CODE
+        #
+        # $env:to      = "jeff@neonforge.com"
+        # $env:subject = "HELLO WORLD!"
+        # $env:body    = "Is this thing working?"
+        
+        return  # Email is not currently working
+      
+        # Pick up the deployment related functions
+        
+        . $env:NC_ROOT/Powershell/deployment.ps1
+      
         # Fetch the credentials
 
-        if ($env:1Password -eq $null)
+        if ($env:DEVBOT_MASTER_PASSWORD -eq $null)
         {
+            # $todo(jefflill): Error out here
         }
-        
-        $username    = GetSecretPassword "NEONFORGE_LOGIN[username]" 
-        $password    = GetSecretPassword "NEONFORGE_LOGIN[password]"
+
+        $username    = GetSecretValue "NEONFORGE_LOGIN[username]" 
+        $password    = GetSecretValue "NEONFORGE_LOGIN[password]"
         $credentials = New-Object -TypeName System.Net.NetworkCredential -ArgumentList $username, $password
-        
+     
         # Construct the email message
 
         $message = New-Object System.Net.Mail.MailMessage
@@ -64,18 +72,12 @@ inputs:
         $message.Subject    = $env:subject
         $message.Body       = $env:body
         $message.IsBodyHtml = $env:bodyAsHtml
-        
+
         # Send the message
         
         $smtp             = New-Object Net.Mail.SmtpClient("smtp.office365.com", 587)
         $smtp.Credentials = $credentials
         $smtp.EnableSsl   = $true
-
         $smtp.Send($message)
-    }
 
-    $env:to      = "jeff@neonforge.com"
-    $env:subject = "HELLO WORLD!"
-    $env:body    = "Is this thing working?"
-
-    Send
+  
