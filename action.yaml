@@ -27,43 +27,43 @@ inputs:
     required: false
     default: false
   attachment0:
-    description: Optionally specifies the path to a file to be attached.
+    description: Optionally specifies the path to an attachment file.
     required: false
     default: ""  
   attachment1:
-    description: Optionally specifies the path to a file to be attached.
+    description: Optionally specifies the path to an attachment file.
     required: false
     default: ""
   attachment2:
-    description: Optionally specifies the path to a file to be attached.
+    description: Optionally specifies the path to an attachment file.
     required: false
     default: ""
   attachment3:
-    description: Optionally specifies the path to a file to be attached.
+    description: Optionally specifies the path to an attachment file.
     required: false
     default: ""
   attachment4:
-    description: Optionally specifies the path to a file to be attached.
+    description: Optionally specifies the path to an attachment file.
     required: false
     default: ""
   attachment5:
-    description: Optionally specifies the path to a file to be attached.
+    description: Optionally specifies the path to an attachment file.
     required: false
     default: ""
   attachment6:
-    description: Optionally specifies the path to a file to be attached.
+    description: Optionally specifies the path to an attachment file.
     required: false
     default: ""
   attachment7:
-    description: Optionally specifies the path to a file to be attached.
+    description: Optionally specifies the path to an attachment file.
     required: false
     default: ""
   attachment8:
-    description: Optionally specifies the path to a file to be attached.
+    description: Optionally specifies the path to an attachment file.
     required: false
     default: ""
   attachment9:
-    description: Optionally specifies the path to a file to be attached.
+    description: Optionally specifies the path to an attachment file.
     required: false
     default: ""
 runs:
@@ -175,7 +175,7 @@ runs:
               $fileMode         = [System.IO.FileMode]::Open
               $fileAccess       = [System.IO.FileAccess]::Read
               $stream           = New-Object -TypeName System.IO.FileStream -ArgumentList $attachmentPath, $fileMode, $fileAccess
-              $contentType      = New-Object -TypeName System.Net.Mail.ContentType
+              $contentType      = New-Object -TypeName System.Net.Mime.ContentType
               $contentType.Name = [System.IO.Path].GetFileName($attachmentPath)
               $attachment       = New-Object -TypeName System.Net.Mail.Attachment -ArgumentList $stream, $contentType
               
