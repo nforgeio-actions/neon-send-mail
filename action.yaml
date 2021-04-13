@@ -52,6 +52,8 @@ runs:
       # Fetch the parameters
       
       $to         = "${{ inputs.to }}"
+      $cc         = "${{ inputs.cc }}"
+      $bcc        = "${{ inputs.bcc }}"
       $subject    = "${{ inputs.subject }}"
       $body       = "${{ inputs.body }}"
       $bodyAsHtml = "${{ inputs.bodyAsHtml }}"
