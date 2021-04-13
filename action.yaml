@@ -48,21 +48,19 @@ inputs:
         
         # Construct the email message
 
-        $toList = New-Object -TypeName MailAddressCollection 
+        $message = New-Object System.Net.Mail.MailMessage
         
-        ForEach ($address in $env:to.Split([System.StringSplitOptions]::RemoveEmptyEntries))
+        ForEach ($address in $env:to.Split(",", [System.StringSplitOptions]::RemoveEmptyEntries))
         {
             $address = $address.Trim()
             if ($address -ne "")
             {
                 $address = New-Object -TypeName System.Net.Mail.MailAddress -ArgumentList $address
-                $toList.Add($address)
+                $message.To.Add($address)
             }
         }
         
-        $message            = New-Object System.Net.Mail.MailMessage
         $message.From       = New-Object -TypeName System.Net.Mail.MailAddress -ArgumentList $username
-        $message.To         = $toList 
         $message.Subject    = $env:subject
         $message.Body       = $env:body
         $message.IsBodyHtml = $env:bodyAsHtml
