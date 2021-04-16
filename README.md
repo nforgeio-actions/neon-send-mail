@@ -59,3 +59,6 @@ uses: nforgeio-actions/neon-send-mail
     attachment9: C:\attachment9.txt
 ```
 
+## Implementation Note
+
+This action assumes that it's being run on a specially configured self-hosted (Windows) jobrunner with the relevant neonFORGE repos already cloned to specific directories.  Generic jobrunners are not supported.
