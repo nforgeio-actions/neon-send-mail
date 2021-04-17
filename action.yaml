@@ -4,66 +4,66 @@
 # variable.
 
 name: neon-send-mail
-description: Sends an email via Office 365.
+description: "Sends an email via Office 365"
 inputs:
   to: 
-    description: Target email addresses separated by commas.
+    description: "Target email addresses separated by commas"
     required: true
   subject: 
-    description: The subject line
+    description: "The subject line"
     required: true
   cc:
-    description: Optional CC email addresses separated by commas.
+    description: "Optional CC email addresses separated by commas"
     required: false
   bcc:
-    description: Optional BCC addresses separated by commas.
+    description: "Optional BCC addresses separated by commas"
     required: false
   body:
-    description: Optional email body text.
+    description: "Optional email body text"
     required: false
     default: ""
   bodyAsHtml: 
-    description: Optionally indicates that the body text is HTML.
+    description: "Optionally indicates that the body text is HTML"
     required: false
     default: false
   attachment0:
-    description: Optionally specifies the path to an attachment file.
+    description: "Optionally specifies the path to an attachment file"
     required: false
     default: ""  
   attachment1:
-    description: Optionally specifies the path to an attachment file.
+    description: "Optionally specifies the path to an attachment file"
     required: false
     default: ""
   attachment2:
-    description: Optionally specifies the path to an attachment file.
+    description: "Optionally specifies the path to an attachment file"
     required: false
     default: ""
   attachment3:
-    description: Optionally specifies the path to an attachment file.
+    description: "Optionally specifies the path to an attachment file"
     required: false
     default: ""
   attachment4:
-    description: Optionally specifies the path to an attachment file.
+    description: "Optionally specifies the path to an attachment file"
     required: false
     default: ""
   attachment5:
-    description: Optionally specifies the path to an attachment file.
+    description: "Optionally specifies the path to an attachment file"
     required: false
     default: ""
   attachment6:
-    description: Optionally specifies the path to an attachment file.
+    description: "Optionally specifies the path to an attachment file"
     required: false
     default: ""
   attachment7:
-    description: Optionally specifies the path to an attachment file.
+    description: "Optionally specifies the path to an attachment file"
     required: false
     default: ""
   attachment8:
-    description: Optionally specifies the path to an attachment file.
+    description: "Optionally specifies the path to an attachment file"
     required: false
     default: ""
   attachment9:
-    description: Optionally specifies the path to an attachment file.
+    description: "Optionally specifies the path to an attachment file"
     required: false
     default: ""
 runs:
