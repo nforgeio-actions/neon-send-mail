@@ -91,10 +91,7 @@ runs:
       $ncPowershell = [System.IO.Path]::Combine($ncRoot, "Powershell")
       
       Push-Location $ncPowershell
-      
-      . ./deployment.ps1
-      . ./github.ps1
-      
+      . ./includes.ps1
       Pop-Location
       
       # Fetch the credentials
