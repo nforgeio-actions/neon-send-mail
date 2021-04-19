@@ -3,7 +3,7 @@
 # account's master 1Password be present as the MASTER_PASSWORD environment
 # variable.
 
-name: neon-send-mail
+name: send-mail
 description: "Sends an email via Office 365"
 inputs:
   to: 
