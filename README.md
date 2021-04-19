@@ -1,4 +1,4 @@
-# neon-send-mail
+# send-mail
 
 **INTERNAL USE ONLY:** This GitHub action is not intended for general use.  The only reason why this repo is public is because GitHub requires it.
 
@@ -8,7 +8,7 @@ Sends the email from the MSFT 365 account specified by the user's 1Password cred
 
 **Send a simple email:**
 ```
-uses: nforgeio-actions/neon-send-mail 
+uses: nforgeio-actions/send-mail 
   with:
     to: sally@test.com
     subject: Hello World!
@@ -18,7 +18,7 @@ uses: nforgeio-actions/neon-send-mail
 
 **Send email to multiple recipients:**
 ```
-uses: nforgeio-actions/neon-send-mail 
+uses: nforgeio-actions/send-mail 
   with:
     to: sally@test.com, bob@test.com
     cc: mary@test.com
@@ -30,7 +30,7 @@ uses: nforgeio-actions/neon-send-mail
 
 **Send an HTML message:**
 ```
-uses: nforgeio-actions/neon-send-mail 
+uses: nforgeio-actions/send-mail 
   with:
     to: sally@test.com
     subject: Hello World!
@@ -41,7 +41,7 @@ uses: nforgeio-actions/neon-send-mail
 
 **Include up to 10 attachment files:**
 ```
-uses: nforgeio-actions/neon-send-mail 
+uses: nforgeio-actions/send-mail 
   with:
     to: sally@test.com
     subject: Hello World!
