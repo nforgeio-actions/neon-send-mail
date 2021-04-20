@@ -1,4 +1,13 @@
 #------------------------------------------------------------------------------
+# FILE:         action.yaml
+# CONTRIBUTOR:  Jeff Lill
+# COPYRIGHT:    Copyright (c) 2005-2021 by neonFORGE LLC.  All rights reserved.
+#
+# The contents of this repository are for private use by neonFORGE, LLC. and may not be
+# divulged or used for any purpose by other organizations or individuals without a
+# formal written and signed agreement with neonFORGE, LLC.
+
+#------------------------------------------------------------------------------
 # Sends an email from the current user's O365 account.  This requires that the
 # account's master 1Password be present as the MASTER_PASSWORD environment
 # variable.
