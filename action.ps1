@@ -44,22 +44,22 @@ $credentials = New-Object -TypeName System.Net.NetworkCredential -ArgumentList $
       
 # Fetch the inputs
       
-$to          = "${{ inputs.to }}"
-$cc          = "${{ inputs.cc }}"
-$bcc         = "${{ inputs.bcc }}"
-$subject     = "${{ inputs.subject }}"
-$body        = "${{ inputs.body }}"
-$bodyAsHtml  = "${{ inputs.bodyAsHtml }}"
-$attachment0 = "${{ inputs.attachment0 }}"
-$attachment1 = "${{ inputs.attachment1 }}"
-$attachment2 = "${{ inputs.attachment2 }}"
-$attachment3 = "${{ inputs.attachment3 }}"
-$attachment4 = "${{ inputs.attachment4 }}"
-$attachment5 = "${{ inputs.attachment5 }}"
-$attachment6 = "${{ inputs.attachment6 }}"
-$attachment7 = "${{ inputs.attachment7 }}"
-$attachment8 = "${{ inputs.attachment8 }}"
-$attachment9 = "${{ inputs.attachment9 }}"
+$to          = Get-ActionInput "to"
+$cc          = Get-ActionInput "cc"
+$bcc         = Get-ActionInput "bcc"
+$subject     = Get-ActionInput "subject"
+$body        = Get-ActionInput "body"
+$bodyAsHtml  = $(Get-ActionInput "bodyAsHtml") -eq "true"
+$attachment0 = Get-ActionInput "attachment0"
+$attachment1 = Get-ActionInput "attachment1"
+$attachment2 = Get-ActionInput "attachment2"
+$attachment3 = Get-ActionInput "attachment3"
+$attachment4 = Get-ActionInput "attachment4"
+$attachment5 = Get-ActionInput "attachment5"
+$attachment6 = Get-ActionInput "attachment6"
+$attachment7 = Get-ActionInput "attachment7"
+$attachment8 = Get-ActionInput "attachment8"
+$attachment9 = Get-ActionInput "attachment9"
      
 # Construct the email message
 

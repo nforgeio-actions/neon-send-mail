@@ -34,7 +34,7 @@ inputs:
   bodyAsHtml: 
     description: "Optionally indicates that the body text is HTML"
     required: false
-    default: false
+    default: "false"
   attachment0:
     description: "Optionally specifies the path to an attachment file"
     required: false
