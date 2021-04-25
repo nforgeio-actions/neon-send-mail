@@ -119,7 +119,7 @@ function AddAttachment
 { 
     [CmdletBinding()]
     param (
-        [Parameter(Position=0, Mandatory=0)]
+        [Parameter(Position=0, Mandatory=$false)]
         [string]$attachmentPath = $null
     )
           
