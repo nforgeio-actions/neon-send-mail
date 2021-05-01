@@ -38,8 +38,8 @@ if ($masterPassword -eq $null)
     throw "MASTER_PASSWORD is required."
 }
 
-$username    = GetSecretValue "NEONFORGE_LOGIN[username]" -MasterPassword $masterPassword
-$password    = GetSecretPassword "SMTP_PASSWORD" -MasterPassword $masterPassword
+$username    = Get-SecretValue "NEONFORGE_LOGIN[username]" -MasterPassword $masterPassword
+$password    = Get-SecretPassword "SMTP_PASSWORD" -MasterPassword $masterPassword
 $credentials = New-Object -TypeName System.Net.NetworkCredential -ArgumentList $username, $password
       
 # Fetch the inputs
