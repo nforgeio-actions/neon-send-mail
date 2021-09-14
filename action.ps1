@@ -71,7 +71,7 @@ if ([System.String]::IsNullOrEmpty($to))
     throw "The [to] argument cannot be null or empty."
 }
         
-ForEach ($address in $to.Split(",", [System.StringSplitOptions]::RemoveEmptyEntries))
+foreach ($address in $to.Split(",", [System.StringSplitOptions]::RemoveEmptyEntries))
 {
     $address = $address.Trim()
     if ($address -ne "")
@@ -83,7 +83,7 @@ ForEach ($address in $to.Split(",", [System.StringSplitOptions]::RemoveEmptyEntr
       
 if (![System.String]::IsNullOrEmpty($cc))
 {
-    ForEach ($address in $cc.Split(",", [System.StringSplitOptions]::RemoveEmptyEntries))
+    foreach ($address in $cc.Split(",", [System.StringSplitOptions]::RemoveEmptyEntries))
     {
         $address = $address.Trim()
         if ($address -ne "")
@@ -96,7 +96,7 @@ if (![System.String]::IsNullOrEmpty($cc))
       
 if (![System.String]::IsNullOrEmpty($bcc))
 {
-    ForEach ($address in $bcc.Split(",", [System.StringSplitOptions]::RemoveEmptyEntries))
+    foreach ($address in $bcc.Split(",", [System.StringSplitOptions]::RemoveEmptyEntries))
     {
         $address = $address.Trim()
         if ($address -ne "")
@@ -163,7 +163,7 @@ $smtp.Send($message)
       
 # Cleanup by disposing any attachments
       
-ForEach ($attachment in $attachments)
+foreach ($attachment in $attachments)
 {
     $attachment.Dispose()
 }
