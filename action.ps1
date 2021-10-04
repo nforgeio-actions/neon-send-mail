@@ -74,6 +74,7 @@ if ([System.String]::IsNullOrEmpty($to))
 foreach ($address in $to.Split(",", [System.StringSplitOptions]::RemoveEmptyEntries))
 {
     $address = $address.Trim()
+
     if ($address -ne "")
     {
         $address = New-Object -TypeName System.Net.Mail.MailAddress -ArgumentList $address
@@ -86,6 +87,7 @@ if (![System.String]::IsNullOrEmpty($cc))
     foreach ($address in $cc.Split(",", [System.StringSplitOptions]::RemoveEmptyEntries))
     {
         $address = $address.Trim()
+
         if ($address -ne "")
         {
             $address = New-Object -TypeName System.Net.Mail.MailAddress -ArgumentList $address
